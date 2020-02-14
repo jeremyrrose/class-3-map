@@ -1,35 +1,37 @@
+// this is my mapboxGL token
+// the base style includes data provided by mapbox, this links the requests to my account
 mapboxgl.accessToken = 'pk.eyJ1IjoiY3dob25nLXFyaSIsImEiOiJjazZncWRkZGowb3kyM25vZXkwbms2cW0xIn0.lbwola6y7YDdaKLMdjif1g';
 
+// we want to return to this point and zoom level after the user interacts
+// with the map, so store them in variables
 var initialCenterPoint = [-73.987, 40.735]
 var initialZoom = 10.67
 
+
+// create an object to hold the initialization options for a mapboxGL map
 var initOptions = {
-  container: 'map-container',
-  style: 'mapbox://styles/mapbox/dark-v10',
-  center: initialCenterPoint,
-  zoom: initialZoom,
-  hash: false
+  container: 'map-container', // put the map in this container
+  style: 'mapbox://styles/mapbox/dark-v10', // use this basemap
+  center: initialCenterPoint, // initial view center
+  zoom: initialZoom, // initial view zoom level (0-18)
 }
 
+// create the new map
 var map = new mapboxgl.Map(initOptions);
 
-// Add zoom and rotation controls to the map.
+// add zoom and rotation controls to the map.
 map.addControl(new mapboxgl.NavigationControl());
 
-// code from the next step will go here!
-
-// make a marker for each feature and add to the map
+// make a single marker in central park
  new mapboxgl.Marker()
    .setLngLat([-73.974087,40.770718])
    .setPopup(new mapboxgl.Popup({ offset: 25 }) // add popups
     .setHTML('I am in Central Park'))
    .addTo(map);
 
-studentData.forEach(function(studentEntry) {
-  // log to console to sanity check the loop and data
-  // TODO: remove this before publishing
-  console.log(studentEntry.name, studentEntry.longitude, studentEntry.latitude)
 
+// iterate over each object in studentData
+studentData.forEach(function(studentEntry) {
   // for each object in the studentData, add a marker to the map with a popup
   new mapboxgl.Marker()
     .setLngLat([studentEntry.longitude, studentEntry.latitude])
@@ -38,7 +40,7 @@ studentData.forEach(function(studentEntry) {
     .addTo(map);
 })
 
-// event listeners for the buttons
+// event listeners for the fly to buttons
 
 $('#china').on('click', function() {
   map.flyTo({
