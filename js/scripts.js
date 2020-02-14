@@ -1,12 +1,13 @@
 mapboxgl.accessToken = 'pk.eyJ1IjoiY3dob25nLXFyaSIsImEiOiJjazZncWRkZGowb3kyM25vZXkwbms2cW0xIn0.lbwola6y7YDdaKLMdjif1g';
 
 var initialCenterPoint = [-73.987, 40.735]
+var initialZoom = 10.67
 
 var initOptions = {
   container: 'map-container',
   style: 'mapbox://styles/mapbox/dark-v10',
   center: initialCenterPoint,
-  zoom: 10.67,
+  zoom: initialZoom,
   hash: false
 }
 
@@ -41,7 +42,8 @@ studentData.forEach(function(studentEntry) {
 
 $('#china').on('click', function() {
   map.flyTo({
-    center: [112.556005, 37.818758]
+    center: [112.556005, 37.818758],
+    zoom: initialZoom
   })
 })
 
@@ -50,7 +52,8 @@ $('#michigan').on('click', function() {
   var michiganLngLat = [-83.10538, 42.50448]
 
   map.flyTo({
-    center: michiganLngLat
+    center: michiganLngLat,
+    zoom: initialZoom
   })
 })
 
@@ -58,12 +61,14 @@ $('#colombia').on('click', function() {
   var colombiaLngLat = [-73.997208, 0.721615]
 
   map.flyTo({
-    center: colombiaLngLat
+    center: colombiaLngLat,
+    zoom: initialZoom
   })
 })
 
 $('#nyc').on('click', function() {
   map.flyTo({
-    center: initialCenterPoint
+    center: initialCenterPoint,
+    zoom: initialZoom
   })
 })
